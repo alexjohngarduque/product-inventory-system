@@ -1,58 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
 
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Product Homepage</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 </head>
 
 <body>
-    <h1>Product</h1>
-    <div>
-        @if(session()->has('success'))
+    <div class="container mt-2">
+
         <div>
-            {{session('success')}}
+            <h2>Product List</h2>
         </div>
-        <br>
-        @endif
-    </div>
+        
+        <div>
+            <a class="btn btn-primary" href="#">Add +</a>
+            <br>
+            <br>
 
-    <div>
-        <a href="{{ route('product.create') }}">Add Product</a>
-        <br>
-        <br>
-    </div>
+        </div>
 
-    <div>
-        <table border="1">
-            <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Quantity</th>
-                <th>Price</th>
-                <th>Description</th>
-                <th>Actions</th>
-            </tr>
-            @foreach($products as $product)
-            <tr>
-                <td>{{$product->id}}</td>
-                <td>{{$product->name}}</td>
-                <td>{{$product->quantity}}</td>
-                <td>{{$product->price}}</td>
-                <td>{{$product->description}}</td>
-                <td colspan="2">
-                    <a href="{{ route('product.edit', ['product' => $product]) }}">Edit</a>
-                    <form style="display:inline;" method="post" action="{{ route('product.delete', ['product' => $product]) }}">
-                        @csrf
-                        @method('delete')
-                        <input type="submit" value="Delete">
-                    </form>
-                </td>
-            </tr>
+        <div class = "card-body">
+            <table class="table table-bordered" border="1">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                        <th>Description</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
 
-            @endforeach
-        </table>
     </div>
 </body>
 
